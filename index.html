@@ -2,76 +2,129 @@
 <html>
 <head>
   <style>
-  ul {
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  ul#deck-list {
     list-style: none;
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 218px;
     margin: 0 auto;
   }
-  li {
-    padding: 10px 5px;
-    border: 1px solid blue;
+  li.deck-card {
+    height: 35px;
     position: relative;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    overflow: hidden;
   }
-  li:after {
+  li.deck-card span {
     position: absolute;
-    right: 5px;
+    height: 100%;
+    line-height: 38px;
+    color: #ffffff;
+    text-shadow: 1px 1px 1px #000;
   }
-  li[data-count="0"] {
-    background-color: gray;
+  li.deck-card span.deck-card-cost {
+    left: 0;
+    width: 30px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
   }
-  li[data-count="0"]:after {
-    content: "0";
+  li.deck-card span.deck-card-name {
+    left: 40px;
   }
-  li[data-count="1"] {
-    background-color: orange;
+  li.deck-card[data-count="2"] {
+    background: url('img/count-2.png');
   }
-  li[data-count="1"]:after {
-    content: "1";
+  li.deck-card[data-count="1"] {
+    background: url('img/count-1.png');
   }
-  li[data-count="2"] {
-    background-color: yellowgreen;
+  li.deck-card[data-count="0"] {
+    background-color: #333;
   }
-  li[data-count="2"]:after {
-    content: "2";
+  li.deck-card[data-count="0"] * {
+    opacity: 0.5;
+  }
+  li.deck-card img {
+    width: 250px;
+    position: absolute;
+    top: -38px;
+    left: 30px;
+    z-index: -1;
   }
   </style>
 </head>
 <body>
-  <ul id="decklist">
-    <li data-count="2">0 - Innvervate</li>
-    <li data-count="1">2 - Mark of the Wild</li>
-    <li data-count="2">2 - Wild Growth</li>
-    <li data-count="2">2 - Wrath</li>
-    <li data-count="1">3 - Healing Touch</li>
-    <li data-count="1">3 - Savage Roar</li>
-    <li data-count="2">3 - Earthen Ring Farseer</li>
-    <li data-count="2">3 - Harvest Golem</li>
-    <li data-count="2">4 - Swipe</li>
-    <li data-count="2">4 - Keeper of the Grove</li>
-    <li data-count="2">4 - Sen'jin Shieldmasta</li>
-    <li data-count="2">5 - Druid of the Claw</li>
-    <li data-count="1">6 - Force of Nature</li>
-    <li data-count="2">6 - Sunwalker</li>
-    <li data-count="1">6 - The Black Knight</li>
-    <li data-count="2">7 - Ancient of Lore</li>
-    <li data-count="2">7 - Ancient of War</li>
-    <li data-count="1">9 - Cenarius</li>
+  <ul id="deck-list">
   </ul>
   <script>
-  var cardDrawn = function(event) {
-    var remaining = event.target.dataset.count;
+  var deck = [
+    { name: 'Innervate',            cost: 0, count: 2 },
+    { name: 'Mark of the Wild',     cost: 2, count: 1 },
+    { name: 'Wild Growth',          cost: 2, count: 2 },
+    { name: 'Wrath',                cost: 2, count: 2 },
+    { name: 'Healing Touch',        cost: 3, count: 1 },
+    { name: 'Savage Roar',          cost: 3, count: 1 },
+    { name: 'Earthen Ring Farseer', cost: 3, count: 2 },
+    { name: 'Harvest Golem',        cost: 3, count: 2 },
+    { name: 'Swipe',                cost: 3, count: 2 },
+    { name: 'Keeper of the Grove',  cost: 3, count: 2 },
+    { name: 'Sen\'jin Shieldmasta', cost: 4, count: 2 },
+    { name: 'Druid of the Claw',    cost: 5, count: 2 },
+    { name: 'Force of Nature',      cost: 6, count: 1 },
+    { name: 'Sunwalker',            cost: 6, count: 2 },
+    { name: 'The Black Knight',     cost: 6, count: 1 },
+    { name: 'Ancient of Lore',      cost: 7, count: 2 },
+    { name: 'Ancient of War',       cost: 7, count: 2 },
+    { name: 'Cenarius',             cost: 9, count: 1 }
+  ];
 
-    if (remaining > 0) event.target.dataset.count -= 1;
+  var cardTemplate = function(card) {
+    var html =
+      '<li class="deck-card" data-count="' + card.count + '">' +
+      '<span class="deck-card-cost">' + card.cost + '</span>' +
+      '<span class="deck-card-name">' + card.name + '</span>' +
+      '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
+      card.name.toLowerCase().replace(/[\s|']/g, '-') + '.png"></li>';
+
+    return html;
   };
 
-  var decklist = document.getElementById('decklist');
+  var hasClass = function(element, className) {
+    var selector = ' ' + className + ' ';
+    return (' ' + element.className + ' ').indexOf(selector) >= 0;
+  };
 
-  for (var i = 0; i < decklist.children.length; i++) {
-    var card = decklist.children[i];
+  var findParentByClass = function(element, className) {
+    if (element === null) throw "Error: Class not found";
+    else if (hasClass(element, className)) return element;
+    else return (findParentByClass(element.parentNode, className));
+  };
 
-    card.addEventListener('click', cardDrawn, false);
+  var cardDrawn = function(event) {
+    var card = findParentByClass(event.target, 'deck-card');
+    var remaining = card.dataset.count;
+
+    if (remaining > 0) card.dataset.count -= 1;
+  };
+
+  var decklist = document.getElementById('deck-list');
+
+  for (var i = 0; i < deck.length; i++) {
+    var card = deck[i];
+
+    var cardElement = document.createElement('li');
+    decklist.appendChild(cardElement);
+    cardElement.outerHTML = cardTemplate(card);
+
+    decklist.children[i].addEventListener('click', cardDrawn, false);
   }
   </script>
 </body>
