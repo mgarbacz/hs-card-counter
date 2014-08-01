@@ -12,15 +12,29 @@
   li {
     padding: 10px 5px;
     border: 1px solid blue;
+    position: relative;
+  }
+  li:after {
+    position: absolute;
+    right: 5px;
   }
   li[data-count="0"] {
     background-color: gray;
   }
+  li[data-count="0"]:after {
+    content: "0";
+  }
   li[data-count="1"] {
     background-color: orange;
   }
+  li[data-count="1"]:after {
+    content: "1";
+  }
   li[data-count="2"] {
     background-color: yellowgreen;
+  }
+  li[data-count="2"]:after {
+    content: "2";
   }
   </style>
 </head>
