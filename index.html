@@ -103,8 +103,7 @@
   };
 
   var findParentByClass = function(element, className) {
-    console.log(element);
-    if (element.tagName === 'html') throw "Class not found";
+    if (element === null) throw "Error: Class not found";
     else if (hasClass(element, className)) return element;
     else return (findParentByClass(element.parentNode, className));
   };
