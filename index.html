@@ -1,6 +1,28 @@
 <!doctype html>
 <html>
 <head>
+  <style>
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    margin: 0 auto;
+  }
+  li {
+    padding: 10px 5px;
+    border: 1px solid blue;
+  }
+  li[data-count="0"] {
+    background-color: gray;
+  }
+  li[data-count="1"] {
+    background-color: orange;
+  }
+  li[data-count="2"] {
+    background-color: yellowgreen;
+  }
+  </style>
 </head>
 <body>
   <ul id="decklist">
