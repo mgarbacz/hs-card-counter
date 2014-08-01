@@ -23,5 +23,20 @@
     <li data-count="2">7 - Ancient of War</li>
     <li data-count="1">9 - Cenarius</li>
   </ul>
+  <script>
+  var cardDrawn = function(event) {
+    var remaining = event.target.dataset.count;
+
+    if (remaining > 0) event.target.dataset.count -= 1;
+  };
+
+  var decklist = document.getElementById('decklist');
+
+  for (var i = 0; i < decklist.children.length; i++) {
+    var card = decklist.children[i];
+
+    card.addEventListener('click', cardDrawn, false);
+  }
+  </script>
 </body>
 </html>
