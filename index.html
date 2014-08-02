@@ -5,6 +5,28 @@
   body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
+  h4 {
+    text-align: center;
+  }
+  button.deck-select {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: 4px;
+  }
   ul#deck-list {
     list-style: none;
     margin: 0;
@@ -62,29 +84,53 @@
   </style>
 </head>
 <body>
+  <button type="button" class="deck-select" data-deck="heavy">Heavy</button>
+  <button type="button" class="deck-select" data-deck="midrange">Midrange</button>
   <ul id="deck-list">
   </ul>
+  <h4>Cards remaining: <span id="deck-remaining">0</span></h4>
   <script>
-  var deck = [
-    { name: 'Innervate',            cost: 0, count: 2 },
-    { name: 'Mark of the Wild',     cost: 2, count: 1 },
-    { name: 'Wild Growth',          cost: 2, count: 2 },
-    { name: 'Wrath',                cost: 2, count: 2 },
-    { name: 'Healing Touch',        cost: 3, count: 1 },
-    { name: 'Savage Roar',          cost: 3, count: 1 },
-    { name: 'Earthen Ring Farseer', cost: 3, count: 2 },
-    { name: 'Harvest Golem',        cost: 3, count: 2 },
-    { name: 'Swipe',                cost: 3, count: 2 },
-    { name: 'Keeper of the Grove',  cost: 3, count: 2 },
-    { name: 'Sen\'jin Shieldmasta', cost: 4, count: 2 },
-    { name: 'Druid of the Claw',    cost: 5, count: 2 },
-    { name: 'Force of Nature',      cost: 6, count: 1 },
-    { name: 'Sunwalker',            cost: 6, count: 2 },
-    { name: 'The Black Knight',     cost: 6, count: 1 },
-    { name: 'Ancient of Lore',      cost: 7, count: 2 },
-    { name: 'Ancient of War',       cost: 7, count: 2 },
-    { name: 'Cenarius',             cost: 9, count: 1 }
-  ];
+  var decks = {
+    heavy: [
+      { name: 'Innervate',            cost: 0, count: 2 },
+      { name: 'Mark of the Wild',     cost: 2, count: 1 },
+      { name: 'Wild Growth',          cost: 2, count: 2 },
+      { name: 'Wrath',                cost: 2, count: 2 },
+      { name: 'Healing Touch',        cost: 3, count: 1 },
+      { name: 'Savage Roar',          cost: 3, count: 1 },
+      { name: 'Earthen Ring Farseer', cost: 3, count: 2 },
+      { name: 'Harvest Golem',        cost: 3, count: 2 },
+      { name: 'Swipe',                cost: 3, count: 2 },
+      { name: 'Keeper of the Grove',  cost: 3, count: 2 },
+      { name: 'Sen\'jin Shieldmasta', cost: 4, count: 2 },
+      { name: 'Druid of the Claw',    cost: 5, count: 2 },
+      { name: 'Force of Nature',      cost: 6, count: 1 },
+      { name: 'Sunwalker',            cost: 6, count: 2 },
+      { name: 'The Black Knight',     cost: 6, count: 1 },
+      { name: 'Ancient of Lore',      cost: 7, count: 2 },
+      { name: 'Ancient of War',       cost: 7, count: 2 },
+      { name: 'Cenarius',             cost: 9, count: 1 }
+    ],
+    midrange: [
+      { name: 'Innervate',            cost: 0, count: 2 },
+      { name: 'Wild Growth',          cost: 2, count: 2 },
+      { name: 'Wrath',                cost: 2, count: 2 },
+      { name: 'Bloodmage Thalnos',    cost: 2, count: 1 },
+      { name: 'Sunfury Protector',    cost: 2, count: 1 },
+      { name: 'Savage Roar',          cost: 3, count: 2 },
+      { name: 'Harvest Golem',        cost: 3, count: 2 },
+      { name: 'Swipe',                cost: 3, count: 2 },
+      { name: 'Chillwind Yeti',       cost: 4, count: 2 },
+      { name: 'Keeper of the Grove',  cost: 3, count: 2 },
+      { name: 'Azure Drake',          cost: 5, count: 2 },
+      { name: 'Druid of the Claw',    cost: 5, count: 2 },
+      { name: 'Force of Nature',      cost: 6, count: 2 },
+      { name: 'Argent Commander',     cost: 6, count: 2 },
+      { name: 'Cairne Bloodhoof',     cost: 6, count: 1 },
+      { name: 'Ancient of Lore',      cost: 7, count: 2 },
+      { name: 'Cenarius',             cost: 9, count: 1 }
+    ]
+  };
 
   var cardTemplate = function(card) {
     var html =
@@ -112,20 +158,38 @@
     var card = findParentByClass(event.target, 'deck-card');
     var remaining = card.dataset.count;
 
-    if (remaining > 0) card.dataset.count -= 1;
+    if (remaining > 0) {
+      card.dataset.count -= 1;
+      var deckRemaining = document.getElementById('deck-remaining');
+      deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) - 1;
+    }
   };
 
-  var decklist = document.getElementById('deck-list');
+  var setupDeck = function(event) {
+    var deck = decks[event.target.dataset.deck];
+    var decklist = document.getElementById('deck-list');
+    decklist.innerHTML = '';
 
-  for (var i = 0; i < deck.length; i++) {
-    var card = deck[i];
+    for (var i = 0; i < deck.length; i++) {
+      var card = deck[i];
 
-    var cardElement = document.createElement('li');
-    decklist.appendChild(cardElement);
-    cardElement.outerHTML = cardTemplate(card);
+      var cardElement = document.createElement('li');
+      decklist.appendChild(cardElement);
+      cardElement.outerHTML = cardTemplate(card);
 
-    decklist.children[i].addEventListener('click', cardDrawn, false);
+      var deckRemaining = document.getElementById('deck-remaining');
+      deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + card.count;
+
+      decklist.children[i].addEventListener('click', cardDrawn, false);
+    }
+  };
+
+  var deckSelectors = document.getElementsByClassName('deck-select');
+
+  for (var i = 0; i < deckSelectors.length; i++) {
+    deckSelectors[i].addEventListener('click', setupDeck, false);
   }
+
   </script>
 </body>
 </html>
