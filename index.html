@@ -227,14 +227,26 @@
     else return (findParentByClass(element.parentNode, className));
   };
 
+  var cardUndrawn = function(event) {
+    event.preventDefault();
+    var card = findParentByClass(event.target, 'deck-card');
+    var deckRemaining = document.getElementById('deck-remaining');
+
+    card.dataset.count = parseInt(card.dataset.count) + 1;
+    deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + 1;
+
+    card.removeEventListener('contextmenu', cardUndrawn);
+  };
+
   var cardDrawn = function(event) {
     var card = findParentByClass(event.target, 'deck-card');
     var remaining = card.dataset.count;
+    var deckRemaining = document.getElementById('deck-remaining');
 
-    if (remaining > 0) {
-      card.dataset.count -= 1;
-      var deckRemaining = document.getElementById('deck-remaining');
+    if (event.button === 0 && remaining > 0) {
+      card.dataset.count = parseInt(card.dataset.count) - 1;
       deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) - 1;
+      card.addEventListener('contextmenu', cardUndrawn, false);
     }
   };
 
