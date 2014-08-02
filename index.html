@@ -241,7 +241,9 @@
   var setupDeck = function(event) {
     var deck = decks[event.target.dataset.deck];
     var decklist = document.getElementById('deck-list');
+    var deckRemaining = document.getElementById('deck-remaining');
     decklist.innerHTML = '';
+    deckRemaining.innerHTML = '0';
 
     for (var i = 0; i < deck.length; i++) {
       var card = deck[i];
@@ -250,7 +252,6 @@
       decklist.appendChild(cardElement);
       cardElement.outerHTML = cardTemplate(card);
 
-      var deckRemaining = document.getElementById('deck-remaining');
       deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + card.count;
 
       decklist.children[i].addEventListener('click', cardDrawn, false);
