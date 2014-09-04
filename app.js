@@ -83,15 +83,14 @@
     };
 
     var findParentByClass = function(element, className) {
-        if (element === null) {
+        if (element === null)
             throw "Error: Class not found";
-        }
         
-        if (hasClass(element, className)) {
+        else if (hasClass(element, className))
             return element;
-        }
         
-        return (findParentByClass(element.parentNode, className));
+        else
+            return (findParentByClass(element.parentNode, className));
     };
 
     var cardUndrawn = function(event) {
@@ -139,8 +138,7 @@
 
     var deckSelectors = document.getElementsByClassName('deck-select');
 
-    for (var i = 0; i < deckSelectors.length; i++) {
+    for (var i = 0; i < deckSelectors.length; i++)
         deckSelectors[i].addEventListener('click', setupDeck, false);
-    }
 
 })();
