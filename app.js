@@ -99,7 +99,7 @@
         var card = findParentByClass(event.target, 'deck-card');
         var deckRemaining = document.getElementById('deck-remaining');
 
-        card.dataset.count = parseInt(card.dataset.count) + 1;
+        card.dataset.count = parseInt(card.dataset.count, 10) + 1;
         deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + 1;
 
         card.removeEventListener('contextmenu', cardUndrawn);
