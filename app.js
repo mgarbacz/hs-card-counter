@@ -83,9 +83,15 @@
     };
 
     var findParentByClass = function(element, className) {
-        if (element === null) throw "Error: Class not found";
-        else if (hasClass(element, className)) return element;
-        else return (findParentByClass(element.parentNode, className));
+        if (element === null) {
+            throw "Error: Class not found";
+        }
+        
+        if (hasClass(element, className)) {
+            return element;
+        }
+        
+        return (findParentByClass(element.parentNode, className));
     };
 
     var cardUndrawn = function(event) {
