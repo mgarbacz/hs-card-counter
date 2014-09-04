@@ -137,4 +137,4 @@
         deckSelectors[i].addEventListener('click', setupDeck, false);
     }
 
-}();
+})();
