@@ -119,7 +119,7 @@ li.deck-card[data-count="0"] * {
 li.deck-card img {
   width: 250px;
   position: absolute;
-  top: -38px;
+  top: -75px;
   left: 30px;
   z-index: -1;
 }
