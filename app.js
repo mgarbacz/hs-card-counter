@@ -111,7 +111,7 @@
         var deckRemaining = document.getElementById('deck-remaining');
 
         if (event.button === 0 && remaining > 0) {
-            card.dataset.count = parseInt(card.dataset.count) - 1;
+            card.dataset.count = parseInt(card.dataset.count, 10) - 1;
             deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) - 1;
             card.addEventListener('contextmenu', cardUndrawn, false);
         }
