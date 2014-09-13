@@ -4,24 +4,27 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <button type="button" class="deck-select druid" data-deck="heavy">
-    Heavy
-  </button>
-  <button type="button" class="deck-select warlock" data-deck="handlock">
-    Handlock
-  </button>
-  <button type="button" class="deck-select warrior" data-deck="naxxroll">
-    Naxxroll
-  </button>
-  <button type="button" class="deck-select paladin" data-deck="madness">
-    Madness
-  </button>
-  <button type="button" class="deck-select rogue" data-deck="legendeath">
-    Legendeath
-  </button>
-  <ul id="deck-list">
-  </ul>
-  <h4>Cards remaining: <span id="deck-remaining">0</span></h4>
+  <div id="container">
+    <div id="deck-list">
+      <button type="button" class="deck-select druid" data-deck="heavy">
+        Heavy
+      </button>
+      <button type="button" class="deck-select warlock" data-deck="handlock">
+        Handlock
+      </button>
+      <button type="button" class="deck-select warrior" data-deck="naxxroll">
+        Naxxroll
+      </button>
+      <button type="button" class="deck-select paladin" data-deck="madness">
+        Madness
+      </button>
+      <button type="button" class="deck-select rogue" data-deck="legendeath">
+        Legendeath
+      </button>
+    </div>
+    <ul id="card-list"></ul>
+    <h4>Cards remaining: <span id="cards-remaining">0</span></h4>
+  </div>
   <script src="app.js"></script>
 </body>
 </html>

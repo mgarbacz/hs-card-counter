@@ -7,7 +7,13 @@ h4 {
   text-align: center;
 }
 
+div#container {
+}
+
 /* Deck Selection buttons */
+div#deck-list {
+}
+
 button.deck-select {
   display: inline-block;
   padding: 6px 12px;
@@ -75,8 +81,8 @@ button.warrior {
   text-shadow: 1px 4px 6px #C79C6E, 0 0 0 #000000;
 }
 
-/* Deck list */
-ul#deck-list {
+/* Card list */
+ul#card-list {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -84,8 +90,8 @@ ul#deck-list {
   margin: 0 auto;
 }
 
-/* Deck Card list items */
-li.deck-card {
+/* Card list items */
+li.card {
   height: 35px;
   border-radius: 6px;
   position: relative;
@@ -97,36 +103,36 @@ li.deck-card {
   user-select: none;
   overflow: hidden;
 }
-li.deck-card span {
+li.card span {
   position: absolute;
   height: 100%;
   line-height: 38px;
   color: #ffffff;
   text-shadow: 1px 1px 1px #000;
 }
-li.deck-card span.deck-card-cost {
+li.card span.card-cost {
   left: 0;
   width: 30px;
   text-align: center;
   font-size: 16px;
   font-weight: bold;
 }
-li.deck-card span.deck-card-name {
+li.card span.card-name {
   left: 40px;
 }
-li.deck-card[data-count="2"] {
+li.card[data-count="2"] {
   background: url('img/count-2.png');
 }
-li.deck-card[data-count="1"] {
+li.card[data-count="1"] {
   background: url('img/count-1.png');
 }
-li.deck-card[data-count="0"] {
+li.card[data-count="0"] {
   background-color: #333;
 }
-li.deck-card[data-count="0"] * {
+li.card[data-count="0"] * {
   opacity: 0.5;
 }
-li.deck-card img {
+li.card img {
   width: 250px;
   position: absolute;
   top: -75px;

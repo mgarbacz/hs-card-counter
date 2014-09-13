@@ -108,9 +108,9 @@
 
     var cardTemplate = function(card) {
         var html =
-            '<li class="deck-card" data-count="' + card.count + '">' +
-            '<span class="deck-card-cost">' + card.cost + '</span>' +
-            '<span class="deck-card-name">' + card.name + '</span>' +
+            '<li class="card" data-count="' + card.count + '">' +
+            '<span class="card-cost">' + card.cost + '</span>' +
+            '<span class="card-name">' + card.name + '</span>' +
             '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
             card.name.toLowerCase().replace(/[\s|'|:]/g, '-') + '.png"></li>';
 
@@ -125,17 +125,17 @@
     var findParentByClass = function(element, className) {
         if (element === null)
             throw "Error: Class not found";
-        
+
         else if (hasClass(element, className))
             return element;
-        
+
         else
             return (findParentByClass(element.parentNode, className));
     };
 
     var cardUndrawn = function(event) {
         event.preventDefault();
-        var card = findParentByClass(event.target, 'deck-card');
+        var card = findParentByClass(event.target, 'card');
         var deckRemaining = document.getElementById('deck-remaining');
 
         card.dataset.count = parseInt(card.dataset.count, 10) + 1;
@@ -145,7 +145,7 @@
     };
 
     var cardDrawn = function(event) {
-        var card = findParentByClass(event.target, 'deck-card');
+        var card = findParentByClass(event.target, 'card');
         var remaining = card.dataset.count;
         var deckRemaining = document.getElementById('deck-remaining');
 
@@ -158,20 +158,20 @@
 
     var setupDeck = function(event) {
         var deck = decks[event.target.dataset.deck];
-        var decklist = document.getElementById('deck-list');
-        var deckRemaining = document.getElementById('deck-remaining');
+        var decklist = document.getElementById('card-list');
+        var deckRemaining = document.getElementById('cards-remaining');
         decklist.innerHTML = '';
         deckRemaining.innerHTML = '0';
-    
+
         for (var i = 0; i < deck.length; i++) {
             var card = deck[i];
-    
+
             var cardElement = document.createElement('li');
             decklist.appendChild(cardElement);
             cardElement.outerHTML = cardTemplate(card);
-    
+
             deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + card.count;
-    
+
             decklist.children[i].addEventListener('click', cardDrawn, false);
         }
     };
