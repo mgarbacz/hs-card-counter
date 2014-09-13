@@ -112,7 +112,7 @@
             '<span class="deck-card-cost">' + card.cost + '</span>' +
             '<span class="deck-card-name">' + card.name + '</span>' +
             '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
-            card.name.toLowerCase().replace(/[\s|']/g, '-') + '.png"></li>';
+            card.name.toLowerCase().replace(/[\s|'|:]/g, '-') + '.png"></li>';
 
         return html;
     };
