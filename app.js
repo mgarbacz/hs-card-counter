@@ -62,6 +62,26 @@
             { name: 'Sunwalker',            cost: 6, count: 2 },
             { name: 'Mountain Giant',       cost: 12, count: 2 },
             { name: 'Molten Giant',         cost: 20, count: 2 }
+        ],
+        madness: [
+            { name: 'Avenge',               cost: 1, count: 1 },
+            { name: 'Redemption',           cost: 1, count: 2 },
+            { name: 'Repentance',           cost: 1, count: 1 },
+            { name: 'Equality',             cost: 2, count: 2 },
+            { name: 'Haunted Creeper',      cost: 2, count: 2 },
+            { name: 'Loot Hoarder',         cost: 2, count: 1 },
+            { name: 'Mad Scientist',        cost: 2, count: 2 },
+            { name: 'Aldor Peacekeeper',    cost: 3, count: 2 },
+            { name: 'Harvest Golem',        cost: 3, count: 2 },
+            { name: 'Scarlet Crusader',     cost: 3, count: 2 },
+            { name: 'Truesilver Champion',  cost: 4, count: 2 },
+            { name: 'Consecration',         cost: 4, count: 2 },
+            { name: 'Defender of Argus',    cost: 4, count: 2 },
+            { name: 'Loatheb',              cost: 5, count: 1 },
+            { name: 'Sludge Belcher',       cost: 5, count: 2 },
+            { name: 'Sunwalker',            cost: 6, count: 2 },
+            { name: 'Kel\'Thuzad',          cost: 8, count: 1 },
+            { name: 'Tirion Fordring',      cost: 8, count: 1 }
         ]
     };
 
