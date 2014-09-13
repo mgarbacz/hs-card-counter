@@ -82,6 +82,27 @@
             { name: 'Sunwalker',            cost: 6, count: 2 },
             { name: 'Kel\'Thuzad',          cost: 8, count: 1 },
             { name: 'Tirion Fordring',      cost: 8, count: 1 }
+        ],
+        legendeath: [
+            { name: 'Backstab',             cost: 0, count: 2 },
+            { name: 'Deadly Poison',        cost: 1, count: 2 },
+            { name: 'Undertaker',           cost: 1, count: 2 },
+            { name: 'Blade Flurry',         cost: 2, count: 1 },
+            { name: 'Eviscerate',           cost: 2, count: 2 },
+            { name: 'Bloodmage Thalnos',    cost: 2, count: 1 },
+            { name: 'Haunted Creeper',      cost: 2, count: 2 },
+            { name: 'Loot Hoarder',         cost: 2, count: 2 },
+            { name: 'Harvest Golem',        cost: 3, count: 2 },
+            { name: 'SI:7 Agent',           cost: 3, count: 2 },
+            { name: 'Baron Rivendare',      cost: 4, count: 1 },
+            { name: 'Defender of Argus',    cost: 4, count: 2 },
+            { name: 'Azure Drake',          cost: 5, count: 2 },
+            { name: 'Loatheb',              cost: 5, count: 1 },
+            { name: 'Sludge Belcher',       cost: 5, count: 2 },
+            { name: 'Cairne Bloodhoof',     cost: 6, count: 1 },
+            { name: 'Sylvanas Windrunner',  cost: 6, count: 1 },
+            { name: 'The Black Knight',     cost: 6, count: 1 },
+            { name: 'Ragnaros the Firelord',cost: 8, count: 1 }
         ]
     };
 
