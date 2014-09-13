@@ -5,13 +5,23 @@ body {
 
 h4 {
   text-align: center;
+  margin: 0;
+  padding: 10px 0;
 }
 
 div#container {
+  width: 432px;
+  margin: 0 auto;
+  position: relative;
 }
 
 /* Deck Selection buttons */
 div#deck-list {
+  position: absolute;
+  left: 0;
+  right: 50%;
+  top: 40px;
+  bottom: 0;
 }
 
 button.deck-select {
@@ -33,6 +43,7 @@ button.deck-select {
   background-image: none;
   border: 1px solid transparent;
   border-radius: 4px;
+  width: 100%;
 }
 
 button.druid {
@@ -86,8 +97,11 @@ ul#card-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  width: 216px;
-  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  right: 0;
+  top: 40px;
+  bottom: 0;
 }
 
 /* Card list items */
