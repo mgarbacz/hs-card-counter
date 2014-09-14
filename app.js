@@ -160,6 +160,7 @@
         var deck = decks[event.target.dataset.deck];
         var cardList = document.getElementById('card-list');
         var cardsRemaining = document.getElementById('cards-remaining');
+        var cardTotal = 0;
         cardList.innerHTML = '';
 
         for (var i = 0; i < deck.length; i++) {
@@ -169,10 +170,12 @@
             cardList.appendChild(cardElement);
             cardElement.outerHTML = cardTemplate(card);
 
-            cardsRemaining.innerHTML = card.count;
+            cardTotal += card.count;
 
             cardList.children[i].addEventListener('click', cardDrawn, false);
         }
+        
+        cardsRemaining.innerHTML = cardTotal;
     };
 
     var deckSelectors = document.getElementsByClassName('deck-select');
