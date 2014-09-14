@@ -136,10 +136,10 @@
     var cardUndrawn = function(event) {
         event.preventDefault();
         var card = findParentByClass(event.target, 'card');
-        var deckRemaining = document.getElementById('deck-remaining');
+        var cardsRemaining = document.getElementById('cards-remaining');
 
         card.dataset.count = parseInt(card.dataset.count, 10) + 1;
-        deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + 1;
+        cardsRemaining.innerHTML = card.dataset.count;
 
         card.removeEventListener('contextmenu', cardUndrawn);
     };
@@ -147,11 +147,11 @@
     var cardDrawn = function(event) {
         var card = findParentByClass(event.target, 'card');
         var remaining = card.dataset.count;
-        var deckRemaining = document.getElementById('deck-remaining');
+        var cardsRemaining = document.getElementById('cards-remaining');
 
         if (event.button === 0 && remaining > 0) {
             card.dataset.count = parseInt(card.dataset.count, 10) - 1;
-            deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) - 1;
+            cardsRemaining.innerHTML = card.dataset.count;
             card.addEventListener('contextmenu', cardUndrawn, false);
         }
     };
@@ -159,9 +159,8 @@
     var setupDeck = function(event) {
         var deck = decks[event.target.dataset.deck];
         var decklist = document.getElementById('card-list');
-        var deckRemaining = document.getElementById('cards-remaining');
+        var cardsRemaining = document.getElementById('cards-remaining');
         decklist.innerHTML = '';
-        deckRemaining.innerHTML = '0';
 
         for (var i = 0; i < deck.length; i++) {
             var card = deck[i];
@@ -170,7 +169,7 @@
             decklist.appendChild(cardElement);
             cardElement.outerHTML = cardTemplate(card);
 
-            deckRemaining.innerHTML = parseInt(deckRemaining.innerHTML, 10) + card.count;
+            cardsRemaining.innerHTML = card.count;
 
             decklist.children[i].addEventListener('click', cardDrawn, false);
         }
