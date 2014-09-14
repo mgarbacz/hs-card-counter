@@ -158,20 +158,20 @@
 
     var setupDeck = function(event) {
         var deck = decks[event.target.dataset.deck];
-        var decklist = document.getElementById('card-list');
+        var cardList = document.getElementById('card-list');
         var cardsRemaining = document.getElementById('cards-remaining');
-        decklist.innerHTML = '';
+        cardList.innerHTML = '';
 
         for (var i = 0; i < deck.length; i++) {
             var card = deck[i];
 
             var cardElement = document.createElement('li');
-            decklist.appendChild(cardElement);
+            cardList.appendChild(cardElement);
             cardElement.outerHTML = cardTemplate(card);
 
             cardsRemaining.innerHTML = card.count;
 
-            decklist.children[i].addEventListener('click', cardDrawn, false);
+            cardList.children[i].addEventListener('click', cardDrawn, false);
         }
     };
 
