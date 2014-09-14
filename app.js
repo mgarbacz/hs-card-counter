@@ -139,7 +139,7 @@
         var cardsRemaining = document.getElementById('cards-remaining');
 
         card.dataset.count = parseInt(card.dataset.count, 10) + 1;
-        cardsRemaining.innerHTML = card.dataset.count;
+        cardsRemaining.innerHTML = parseInt(cardsRemaining.innerHTML, 10) + 1;
 
         card.removeEventListener('contextmenu', cardUndrawn);
     };
@@ -151,7 +151,7 @@
 
         if (event.button === 0 && remaining > 0) {
             card.dataset.count = parseInt(card.dataset.count, 10) - 1;
-            cardsRemaining.innerHTML = card.dataset.count;
+            cardsRemaining.innerHTML = parseInt(cardsRemaining.innerHTML, 10) - 1;
             card.addEventListener('contextmenu', cardUndrawn, false);
         }
     };
