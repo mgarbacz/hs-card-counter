@@ -134,16 +134,19 @@ li.card span.card-cost {
 li.card span.card-name {
   left: 40px;
 }
-li.card[data-count="2"] {
+li.card[data-count="2"][data-drawn="0"] {
   background: url('img/count-2.png');
 }
-li.card[data-count="1"] {
+li.card[data-count="2"][data-drawn="1"],
+li.card[data-count="1"][data-drawn="0"] {
   background: url('img/count-1.png');
 }
-li.card[data-count="0"] {
+li.card[data-count="2"][data-drawn="2"],
+li.card[data-count="1"][data-drawn="1"] {
   background-color: #333;
 }
-li.card[data-count="0"] * {
+li.card[data-count="2"][data-drawn="2"] *,
+li.card[data-count="1"][data-drawn="1"] * {
   opacity: 0.5;
 }
 li.card img {
