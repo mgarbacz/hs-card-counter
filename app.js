@@ -108,7 +108,7 @@
 
     var cardTemplate = function(card) {
         var html =
-            '<li class="card" data-count="' + card.count + '">' +
+            '<li class="card" data-drawn="0" data-count="' + card.count + '">' +
             '<span class="card-cost">' + card.cost + '</span>' +
             '<span class="card-name">' + card.name + '</span>' +
             '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
@@ -136,21 +136,26 @@
     var cardUndrawn = function(event) {
         event.preventDefault();
         var card = findParentByClass(event.target, 'card');
+        var drawn = card.dataset.drawn;
         var cardsRemaining = document.getElementById('cards-remaining');
 
-        card.dataset.count = parseInt(card.dataset.count, 10) + 1;
-        cardsRemaining.innerHTML = parseInt(cardsRemaining.innerHTML, 10) + 1;
+        if (drawn > 0) {
+            card.dataset.drawn = parseInt(card.dataset.drawn, 10) - 1;
+            cardsRemaining.innerHTML = parseInt(cardsRemaining.innerHTML, 10) + 1;
+        }
 
-        card.removeEventListener('contextmenu', cardUndrawn);
+        if (card.dataset.drawn == 0) {
+            card.removeEventListener('contextmenu', cardUndrawn);
+        }
     };
 
     var cardDrawn = function(event) {
         var card = findParentByClass(event.target, 'card');
-        var remaining = card.dataset.count;
+        var remaining = card.dataset.count - card.dataset.drawn;
         var cardsRemaining = document.getElementById('cards-remaining');
 
         if (event.button === 0 && remaining > 0) {
-            card.dataset.count = parseInt(card.dataset.count, 10) - 1;
+            card.dataset.drawn = parseInt(card.dataset.drawn, 10) + 1;
             cardsRemaining.innerHTML = parseInt(cardsRemaining.innerHTML, 10) - 1;
             card.addEventListener('contextmenu', cardUndrawn, false);
         }
@@ -174,7 +179,7 @@
 
             cardList.children[i].addEventListener('click', cardDrawn, false);
         }
-        
+
         cardsRemaining.innerHTML = cardTotal;
     };
 
