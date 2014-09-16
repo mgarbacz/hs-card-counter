@@ -10,7 +10,7 @@ h4 {
 }
 
 div#container {
-  width: 432px;
+  width: 216px;
   margin: 0 auto;
   position: relative;
 }
@@ -19,9 +19,9 @@ div#container {
 div#deck-list {
   position: absolute;
   left: 0;
-  right: 50%;
-  top: 40px;
+  top: 0;
   bottom: 0;
+  width: 250px;
 }
 
 button.deck-select {
@@ -97,11 +97,6 @@ ul#card-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  position: absolute;
-  left: 50%;
-  right: 0;
-  top: 40px;
-  bottom: 0;
 }
 
 /* Card list items */
