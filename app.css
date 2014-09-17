@@ -3,25 +3,19 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-h4 {
+header h1 {
+  font-size: 18px;
+  line-height: 40px;
   text-align: center;
-  margin: 0;
-  padding: 10px 0;
-}
-
-div#container {
-  width: 216px;
-  margin: 0 auto;
-  position: relative;
 }
 
 /* Deck Selection buttons */
 div#deck-list {
   width: 275px;
   position: absolute;
-  left: 0px;
   top: 0;
   bottom: 0;
+  left: 0;
 }
 
 button.deck-select {
@@ -92,10 +86,27 @@ button.warrior {
   text-shadow: 1px 4px 6px #C79C6E, 0 0 0 #000000;
 }
 
+/* Main content */
+
+div#container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 275px;
+  width: 900px;
+}
+
+div#container p {
+  text-align: center;
+  margin: 0;
+  padding: 10px 0;
+}
+
 /* Card list */
 ul#card-list {
+  width: 216px;
   list-style: none;
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
 }
 
