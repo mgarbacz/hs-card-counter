@@ -30,26 +30,26 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
       controller: 'AppCtrl'
     })
 
-    .state('app.playlists', {
-      url: "/playlists",
+    .state('app.decklists', {
+      url: "/decklists",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
+          templateUrl: "templates/decklists.html",
+          controller: 'DecklistsCtrl'
         }
       }
     })
 
-    .state('app.single', {
-      url: "/playlists/:playlistId",
+    .state('app.decklist', {
+      url: "/decklists/:decklistId",
       views: {
         'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
+          templateUrl: "templates/decklist.html",
+          controller: 'DecklistCtrl'
         }
       }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/decklists');
 });
 
