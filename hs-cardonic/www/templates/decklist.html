@@ -1,5 +1,9 @@
 <ion-view title="Decklist">
   <ion-content class="has-header">
-    <h1>Decklist</h1>
+    <ion-list>
+      <ion-item ng-repeat="card in currentDeck">
+        {{card.name}}
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>
