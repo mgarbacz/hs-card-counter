@@ -19,11 +19,11 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
         }
 
         var decks = [
-            { title: 'heavy', id: 1 },
-            { title: 'naxxroll', id: 2 },
-            { title: 'handlock', id: 3 },
-            { title: 'legendeath', id: 4 },
-            { title: 'madness', id: 5 }
+            { name: 'heavy', id: 1 },
+            { name: 'naxxroll', id: 2 },
+            { name: 'handlock', id: 3 },
+            { name: 'legendeath', id: 4 },
+            { name: 'madness', id: 5 }
         ];
 
         var decklists = {
@@ -134,9 +134,9 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
 
         for (var i = 0; i < decks.length; i++) {
             var deck = decks[i];
-            var cards = decklists[deck.title];
+            var cards = decklists[deck.name];
             localStorage.setItem('deck-' + deck.id,
-                JSON.stringify({ 'name': deck.title, 'cards': cards }));
+                JSON.stringify({ 'name': deck.name, 'cards': cards }));
         }
     });
 })
