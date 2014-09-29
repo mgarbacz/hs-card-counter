@@ -4,9 +4,11 @@
   <link rel="stylesheet" href="app.css">
 </head>
 <body>
-  <div id="container">
-    <h4>Cards remaining: <span id="cards-remaining">0</span></h4>
-    <div id="deck-list">
+  <div id="deck-list">
+    <header>
+      <h1>Decks</h1>
+    </header>
+    <div id="deck-selects">
       <button type="button" class="deck-select druid" data-deck="heavy">
         Heavy
       </button>
@@ -23,6 +25,12 @@
         Legendeath
       </button>
     </div>
+  </div>
+  <div id="container">
+    <header>
+      <h1>Hearthstone Card Counter</h1>
+    </header>
+    <p>Cards remaining: <span id="cards-remaining">0</span></p>
     <ul id="card-list"></ul>
   </div>
   <script src="app.js"></script>
