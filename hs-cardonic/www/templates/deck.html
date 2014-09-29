@@ -1,7 +1,7 @@
-<ion-view title="Decklist">
+<ion-view title="{{deck.name}}">
   <ion-content class="has-header">
     <ion-list>
-      <ion-item ng-repeat="card in currentDeck">
+      <ion-item ng-repeat="card in deck.cards">
         {{card.name}}
       </ion-item>
     </ion-list>

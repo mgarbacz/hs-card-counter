@@ -33,11 +33,12 @@ angular.module('hs-card-counter.controllers', [])
     };
 })
 
-.controller('DecklistsCtrl', function($scope) {
-    $scope.decklists = JSON.parse(localStorage.getItem('decklists'));
+.controller('DecksCtrl', function($scope) {
+    $scope.decks = JSON.parse(localStorage.getItem('decks'));
 })
 
-.controller('DecklistCtrl', function($scope, $stateParams) {
-    $scope.currentDeck = JSON.parse(localStorage.getItem('decklist-' +
-        $stateParams.decklistId));
+.controller('DeckCtrl', function($scope, $stateParams) {
+    console.log($stateParams);
+    $scope.deck = JSON.parse(localStorage.getItem('deck-' +
+        $stateParams.id));
 });

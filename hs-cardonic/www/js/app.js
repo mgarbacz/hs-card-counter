@@ -130,12 +130,13 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
             ]
         };
 
-        localStorage.setItem('decklists', JSON.stringify(decks));
+        localStorage.setItem('decks', JSON.stringify(decks));
 
         for (var i = 0; i < decks.length; i++) {
             var deck = decks[i];
-            localStorage.setItem('decklist-' + deck.id,
-                JSON.stringify(decklists[deck.title]));
+            var cards = decklists[deck.title];
+            localStorage.setItem('deck-' + deck.id,
+                JSON.stringify({ 'name': deck.title, 'cards': cards }));
         }
     });
 })
@@ -150,27 +151,27 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
             controller: 'AppCtrl'
         })
 
-        .state('app.decklists', {
-            url: "/decklists",
+        .state('app.decks', {
+            url: "/decks",
             views: {
                 'menuContent' :{
-                    templateUrl: "templates/decklists.html",
-                    controller: 'DecklistsCtrl'
+                    templateUrl: "templates/decks.html",
+                    controller: 'DecksCtrl'
                 }
             }
         })
 
-        .state('app.decklist', {
-            url: "/decklists/:decklistId",
+        .state('app.deck', {
+            url: "/decks/:id",
             views: {
                 'menuContent' :{
-                    templateUrl: "templates/decklist.html",
-                    controller: 'DecklistCtrl'
+                    templateUrl: "templates/deck.html",
+                    controller: 'DeckCtrl'
                 }
             }
         });
 
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/decklists');
+    $urlRouterProvider.otherwise('/app/decks');
 });
 
