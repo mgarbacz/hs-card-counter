@@ -162,7 +162,7 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
         })
 
         .state('app.deck', {
-            url: "/decks/:id",
+            url: "/decks/:deck_id",
             views: {
                 'menuContent' :{
                     templateUrl: "templates/deck.html",

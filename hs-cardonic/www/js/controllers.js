@@ -40,5 +40,5 @@ angular.module('hs-card-counter.controllers', [])
 .controller('DeckCtrl', function($scope, $stateParams) {
     console.log($stateParams);
     $scope.deck = JSON.parse(localStorage.getItem('deck-' +
-        $stateParams.id));
+        $stateParams.deck_id));
 });
