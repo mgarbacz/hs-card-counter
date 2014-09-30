@@ -130,12 +130,12 @@ angular.module('hs-card-counter', ['ionic', 'hs-card-counter.controllers'])
             ]
         };
 
-        localStorage.setItem('decks', JSON.stringify(decks));
+        window.localStorage.setItem('decks', JSON.stringify(decks));
 
         for (var i = 0; i < decks.length; i++) {
             var deck = decks[i];
             var cards = decklists[deck.name];
-            localStorage.setItem('deck-' + deck.id,
+            window.localStorage.setItem('deck-' + deck.id,
                 JSON.stringify({ 'name': deck.name, 'cards': cards }));
         }
     });

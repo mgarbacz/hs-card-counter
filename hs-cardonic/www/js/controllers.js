@@ -34,10 +34,10 @@ angular.module('hs-card-counter.controllers', [])
 })
 
 .controller('DecksCtrl', function($scope) {
-    $scope.decks = JSON.parse(localStorage.getItem('decks'));
+    $scope.decks = JSON.parse(window.localStorage.getItem('decks'));
 })
 
 .controller('DeckCtrl', function($scope, $stateParams) {
-    $scope.deck = JSON.parse(localStorage.getItem('deck-' +
+    $scope.deck = JSON.parse(window.localStorage.getItem('deck-' +
         $stateParams.deck_id));
 });
