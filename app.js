@@ -26,14 +26,16 @@
         ]
     };
 
-    var cardTemplate = function(card, cardsRemaining) {
+    var cardTemplate = function(card) {
         var html =
             '<li class="card" data-drawn="0" data-count="' + card.count + '">' +
             '<span class="card-cost">' + card.cost + '</span>' +
             '<span class="card-name">' + card.name + '</span>' +
+            '<span class="card-img">' +
             '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
             card.name.toLowerCase().replace(/[\s|'|:]/g, '-') + '.png">' +
-            '<span>' + ( (card.count / cardsRemaining).toFixed(2) * 100) + '%</span></li>';
+            '</span>' +
+            '<span class="card-chance">' + card.drawChance + '%</span></li>';
 
         return html;
     };
@@ -94,7 +96,7 @@
 
             var cardElement = document.createElement('li');
             cardList.appendChild(cardElement);
-            cardElement.outerHTML = cardTemplate(card, cardsRemaining);
+            cardElement.outerHTML = cardTemplate(card);
 
             cardTotal += card.count;
 
