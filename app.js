@@ -33,7 +33,7 @@
             '<span class="card-name">' + card.name + '</span>' +
             '<img src="http://s3-us-west-2.amazonaws.com/hearthstats/cards/' +
             card.name.toLowerCase().replace(/[\s|'|:]/g, '-') + '.png">' +
-            '<span class="card-chance">' + ( (card.count / cardsRemaining).toFixed(2) * 100) + '%</span></li>';
+            '<span>' + ( (card.count / cardsRemaining).toFixed(2) * 100) + '%</span></li>';
 
         return html;
     };
@@ -86,18 +86,22 @@
         var deck = decks[event.target.dataset.deck];
         var cardList = document.getElementById('card-list');
         var cardsRemaining = document.getElementById('cards-remaining');
-        var cardTotal = deck.length;
+        var cardTotal = 0;
         cardList.innerHTML = '';
-        cardsRemaining.innerHTML = cardTotal;
 
         for (var i = 0; i < deck.length; i++) {
             var card = deck[i];
 
             var cardElement = document.createElement('li');
             cardList.appendChild(cardElement);
-            cardElement.outerHTML = cardTemplate(card, parseInt(cardsRemaining.innerHTML, 10));
+            cardElement.outerHTML = cardTemplate(card, cardsRemaining);
+
+            cardTotal += card.count;
+
             cardList.children[i].addEventListener('click', cardDrawn, false);
         }
+
+        cardsRemaining.innerHTML = cardTotal;
     };
 
     var deckSelectors = document.getElementsByClassName('deck-select');
