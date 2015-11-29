@@ -85,7 +85,7 @@
     var setupDeck = function(event) {
         var deck = decks[event.target.dataset.deck];
         var cardList = document.getElementById('card-list');
-        var cardsRemaining = parseInt(document.getElementById('cards-remaining').innerHtml, 10);
+        var cardsRemaining = parseInt(document.getElementById('cards-remaining').innerHTML, 10);
         var cardTotal = 0;
         cardList.innerHTML = '';
 
