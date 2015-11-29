@@ -86,8 +86,9 @@
         var deck = decks[event.target.dataset.deck];
         var cardList = document.getElementById('card-list');
         var cardsRemaining = document.getElementById('cards-remaining');
-        var cardTotal = 0;
+        var cardTotal = deck.length;
         cardList.innerHTML = '';
+        cardsRemaining.innerHTML = cardTotal;
 
         for (var i = 0; i < deck.length; i++) {
             var card = deck[i];
@@ -95,13 +96,8 @@
             var cardElement = document.createElement('li');
             cardList.appendChild(cardElement);
             cardElement.outerHTML = cardTemplate(card, parseInt(cardsRemaining.innerHTML, 10));
-
-            cardTotal += card.count;
-
             cardList.children[i].addEventListener('click', cardDrawn, false);
         }
-
-        cardsRemaining.innerHTML = cardTotal;
     };
 
     var deckSelectors = document.getElementsByClassName('deck-select');
