@@ -142,6 +142,7 @@ li.card span.card-name {
 }
 li.card span.card-chance {
   left: 220px;
+  color: #000000;
 }
 li.card[data-count="2"][data-drawn="0"] {
   background: url('img/count-2.png');
